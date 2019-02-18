@@ -132,7 +132,7 @@ if(fit.models) {
   source('define-model-fit.R')
   for(d in distnames) {
     load(eval(paste('results/sim-freqs-',d,'.Rda',sep="")))
-    attempt <- tryFit(beta.init=5,alpha.init=1,f=all.freqs[[1]],obs.fun="logistic")
+    attempt <- tryFit(beta.init=5,alpha.init=1,f=all.freqs,obs.fun="logistic")
     estimates <- attempt$estimates
     fits <- attempt$fits
     save(estimates, file=paste('results/estimates-',d,'.Rda',sep=""))
