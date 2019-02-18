@@ -135,6 +135,7 @@ getObs <- function(true.f,     #frequencies of outbreak sizes (from simulation)
           } else {
             #if perturbations lead to a higher likelihood, search again for incremental changes
             init.est <- best.est
+            N.est <- sum(init.est)+obs.inf
             print('perturbed')
           }
         }
@@ -245,6 +246,7 @@ getObs <- function(true.f,     #frequencies of outbreak sizes (from simulation)
         } else {
           #if perturbations lead to a higher likelihood, search again for incremental changes
           init.est <- best.est
+          N.est <- sum(init.est)+obs.inf
           print('perturbed')
         }
       }
