@@ -36,8 +36,8 @@ leg.plot <- ggplot(est.data)+
 legend <- get_legend(leg.plot)
 rm(leg.plot)
 
-f1 <- plot_grid(figs[[1]],figs[[3]],nrow=2)
-f2 <- plot_grid(figs[[2]],figs[[4]],nrow=2)
+f1 <- plot_grid(figs[[1]],figs[[3]],nrow=2, labels=c('A','C'))
+f2 <- plot_grid(figs[[2]],figs[[4]],nrow=2, labels=c('B','D'))
 
 pdf('figures/SA-R0-decay.pdf',width=7.5,height=6.5)
 print(plot_grid(f1,f2,legend, nrow=1, rel_widths = c(.4,.4,.2)))
