@@ -18,8 +18,17 @@ for(d in 1:length(decays)){
   if(is.null(d.all)) {d.all <- est.data
   } else d.all <- rbind(d.all,est.data)
   
+  contour <- melt(est.data)
+  contour$sizes <- as.numeric(contour$sizes)
+  contour$R0 <- as.numeric(contour$R0)
+  
+  contour.R0.scale <- length(R0s)/(max(R0s))
+  contour.size.scale <- length(sizes)/(max(sizes))
+  
   figs[[d]] <- ggplot(est.data)+
     geom_tile(aes(x=sizes, y=R0, fill=estimate))+
+    stat_contour(data=contour, aes(x=sizes*contour.size.scale, y=R0*contour.R0.scale, z=value),binwidth=.5,
+                 lwd=1.5,color='white')+
     scale_fill_gradient2(name='prop. observed',
                          high='black', mid=cols[1], low='white',
                          midpoint = 0.5, limits=c(0,1))+ 
