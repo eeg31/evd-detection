@@ -34,7 +34,7 @@ getObs <- function(true.f,     #frequencies of outbreak sizes (from simulation)
     return(out)
   }
 
-  EM <- function(par){
+  descend <- function(par){
     tol <- 1e-10
     its <- 1000
 
@@ -76,7 +76,7 @@ getObs <- function(true.f,     #frequencies of outbreak sizes (from simulation)
       
       N.est <- sum(init.est) + obs.inf
       
-      #EXPECTATION STEP
+      #T SELECTION (ANALOGUE TO EM EXPECTATION STEP)
       #adjust estimates until best estimate (T) is reached
       stop <- FALSE
       while(!stop){
@@ -259,10 +259,10 @@ getObs <- function(true.f,     #frequencies of outbreak sizes (from simulation)
 
   fit <- NA
   if(obs.fun=="logistic") {
-    fit <- EM(par=c(beta,log(alpha/(1-alpha))))
+    fit <- descend(par=c(beta,log(alpha/(1-alpha))))
   }
   if(obs.fun=="geometric"){
-    fit <- EM(par=p)
+    fit <- descend(par=p)
   }
   
   est <- fit$est
