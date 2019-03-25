@@ -133,14 +133,14 @@ for(i in 1:length(distnames)){
   max <- numeric(xmax)
   med <- numeric(xmax)
   
-  for (j in 1:xmax){
-    min[j] <- min(dnbinom(j, size=sizes, mu=R0s))
-    max[j] <- max(dnbinom(j, size=sizes, mu=R0s))
-    med[j] <- median(dnbinom(j, size=sizes, mu=R0s))
+  for (j in 0:(xmax-1)){
+    min[j+1] <- min(dnbinom(j, size=sizes, mu=R0s))
+    max[j+1] <- max(dnbinom(j, size=sizes, mu=R0s))
+    med[j+1] <- median(dnbinom(j, size=sizes, mu=R0s))
   }
   
   new.offs <- data.frame(dataset=rep(d,xmax*2),
-                         x=c(1:xmax,xmax:1),
+                         x=c(0:(xmax-1),(xmax-1):0),
                          med=c(med,rev(med)),
                          bounds=c(min,rev(max)))
   if(is.null(offsprings)) {
